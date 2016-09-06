@@ -1,15 +1,10 @@
 import React from 'react';
-
+import Articles from 'components/articles';
 import './Home.less';
 
-class Home extends React.Component {
-  render() {
-    return (
-      <div>
-        Home
-      </div>
-    );
-  }
-}
-
-export default Home;
+export default () => (
+  <div className="home">
+    <h1>The New York Times Payload Example (using flux/alt)</h1>
+    <Articles />
+  </div>
+);

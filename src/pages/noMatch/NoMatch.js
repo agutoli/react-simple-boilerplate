@@ -5,7 +5,7 @@ import './NoMatch.scss';
 class NoMatch extends React.Component {
   render() {
     return (
-      <div>No Match</div>
+      <div className="no-math">No Match</div>
     );
   }
 }

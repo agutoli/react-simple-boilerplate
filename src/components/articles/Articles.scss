@@ -1,0 +1,19 @@
+.articles__row {
+  display: flex;
+  padding: 20px 0;
+  border: 1px solid #eee;
+}
+
+.articles__image {
+  margin: 0 20px;
+}
+
+.articles__text {
+  h2, h3, h6 {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+}

@@ -1,20 +1,20 @@
 import React from 'react';
 
-// import HeaderContainer from 'components/header/headerContainer';
-// import Footer from 'components/footer';
+import Navbar from 'components/navbar';
 
 import './default.scss';
 
-class DefaultLayout extends React.Component {
-  render() {
-    return (
-        <div className="app-default-layout">
-          <div className="app-content">
-            {this.props.children}
-          </div>
-        </div>
-    );
-  }
-}
+const DefaultLayout = ({ children }) => (
+  <div className="default-layout">
+    <Navbar />
+    <div className="default-layout__content">
+      { children }
+    </div>
+  </div>
+);
+
+DefaultLayout.propTypes = {
+  children: React.PropTypes.any
+};
 
 export default DefaultLayout;

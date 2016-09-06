@@ -1,5 +1,5 @@
 {
-   "name": "HomeContainer",
+   "name": "Home",
    "public": true,
-   "main": "./HomeContainer.js"
+   "main": "./Home.js"
 }

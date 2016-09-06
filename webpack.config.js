@@ -38,6 +38,16 @@ const options = {
       rewrites: [
         { from: /.*\.html/, to: '/index.html' }
       ]
+    },
+    //http://www.nytimes.com/svc/news/v3/content/all/u.s..json?subsection=politics&type=article,blog&client_id=PoliticsSF
+    proxy: {
+      '/api/*': {
+        target: 'http://www.nytimes.com/',
+        pathRewrite: {
+          '/api': ''
+        },
+        changeOrigin: true
+      }
     }
   },
   plugins: [

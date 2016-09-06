@@ -1,10 +1,10 @@
 import { Actions } from 'decorators/altDecorators';
 
 @Actions
-class PersonActions {
+class ArticleActions {
   constructor() {
     this.generateActions('dataLoader');
   }
 }
 
-export default PersonActions;
+export default ArticleActions;

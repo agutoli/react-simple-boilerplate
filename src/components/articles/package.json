@@ -1,0 +1,5 @@
+{
+   "name": "ArticlesContainer",
+   "public": true,
+   "main": "./ArticlesContainer.js"
+}

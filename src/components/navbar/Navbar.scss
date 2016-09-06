@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  background: #eee;
+  padding: 10px 30px;
+  margin-bottom: 20px;
+
+  &__list {
+    margin: 0;
+  }
+
+  &__list-item {
+    display: inline;
+    padding: 0 15px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
