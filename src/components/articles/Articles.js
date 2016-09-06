@@ -15,7 +15,7 @@ class Articles extends React.Component {
         {articles.items.map((event, index) => (
           <section className="articles__row" key={index}>
             <div className="articles__image">
-              <img src={event.thumbnail_standard} />
+              <img src={event.thumbnail_standard} width="100" />
             </div>
             <div className="articles__text">
               <h6>{event.source}</h6>
