@@ -6,8 +6,30 @@ export const Actions = (targetClass) => {
   return alt.createActions(targetClass);
 };
 
-export const Store = (targetClass) => {
-  return alt.createStore(targetClass, targetClass.name);
+export const Store = (actionsInstance) => {
+  const actions = Object.keys(actionsInstance).reduce((_actions, propName) => {
+    if (typeof actionsInstance[propName] === 'function') {
+      if (actionsInstance[propName].name === 'action') {
+        _actions.push({
+          name: propName,
+          handler: actionsInstance[propName]
+        });
+      }
+    }
+    return _actions;
+  }, []);
+
+  return (targetClass) => {
+    const store = alt.createStore(targetClass, targetClass.name);
+    store.lifecycle = function () {
+      actions.map(action => {
+        if (typeof targetClass.prototype[action.name] === 'function') {
+          this.state.bindAction(action.handler, targetClass.prototype[action.name]);
+        }
+      });
+    };
+    return store;
+  };
 };
 
 export const StoreContainer = function () {

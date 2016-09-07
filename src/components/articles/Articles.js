@@ -10,6 +10,7 @@ class Articles extends React.Component {
 
   render() {
     const { articles } = this.props;
+    console.log(articles);
     return (
       <div className="articles">
         {articles.items.map((event, index) => (
