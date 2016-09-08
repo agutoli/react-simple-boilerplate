@@ -8,9 +8,14 @@ class Articles extends React.Component {
     articles: React.PropTypes.instanceOf(ArticleEntityCollection)
   };
 
+  static defaultProps = {
+    articles: {
+      items: new ArticleEntityCollection([])
+    }
+  };
+
   render() {
     const { articles } = this.props;
-    console.log(articles);
     return (
       <div className="articles">
         {articles.items.map((event, index) => (
