@@ -25,6 +25,8 @@ export const Store = (actionsInstance) => {
       actions.map(action => {
         if (typeof targetClass.prototype[action.name] === 'function') {
           this.state.bindAction(action.handler, targetClass.prototype[action.name]);
+        } else {
+          console.warn(`${targetClass.name}.prototype.${action.name} does not exists!`);
         }
       });
     };

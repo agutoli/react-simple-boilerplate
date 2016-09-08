@@ -1,5 +1,5 @@
 import Speck from 'speck-entity';
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 
 export class ArticleEntity extends Speck {
   static SCHEMA = {
