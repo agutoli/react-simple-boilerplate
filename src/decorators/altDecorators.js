@@ -9,12 +9,10 @@ export const Actions = (targetClass) => {
 export const Store = (actionsInstance) => {
   const actions = Object.keys(actionsInstance).reduce((_actions, propName) => {
     if (typeof actionsInstance[propName] === 'function') {
-      if (actionsInstance[propName].name === 'action') {
-        _actions.push({
-          name: propName,
-          handler: actionsInstance[propName]
-        });
-      }
+      _actions.push({
+        name: propName,
+        handler: actionsInstance[propName]
+      });
     }
     return _actions;
   }, []);
