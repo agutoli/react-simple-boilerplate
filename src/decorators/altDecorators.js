@@ -7,6 +7,8 @@ export const Actions = (targetClass) => {
 };
 
 export const Store = (actionsInstance) => {
+  Store._listeners = Store._listeners || {};
+
   const actions = Object.keys(actionsInstance).reduce((_actions, propName) => {
     if (typeof actionsInstance[propName] === 'function') {
       _actions.push({
@@ -20,12 +22,18 @@ export const Store = (actionsInstance) => {
   return (targetClass) => {
     const store = alt.createStore(targetClass, targetClass.name);
     store.lifecycle = function () {
-      actions.map(action => {
+      actions.forEach((action) => {
+        const cacheKey = `${targetClass.name}.${action.name}`;
         if (typeof targetClass.prototype[action.name] === 'function') {
+          if (Store._listeners[cacheKey]) {
+            return null;
+          }
+          Store._listeners[cacheKey] = true;
           this.state.bindAction(action.handler, targetClass.prototype[action.name]);
         } else {
           console.warn(`${targetClass.name}.prototype.${action.name} does not exists!`);
         }
+        return null;
       });
     };
     return store;
@@ -35,6 +43,11 @@ export const Store = (actionsInstance) => {
 export const StoreContainer = function () {
   const stores = Array.from(arguments);
   class Connect extends React.Component {
+
+    static contextTypes = {
+      router: React.PropTypes.object.isRequired
+    };
+
     static getStores() {
       return stores;
     }
@@ -52,6 +65,8 @@ export const StoreContainer = function () {
     for (const prop in properties) {
       if (/^on([A-Z]*)([a-z]*)/.test(prop)) {
         events[prop] = properties[prop];
+      } else {
+        Connect.prototype[prop] = properties[prop];
       }
     }
 
