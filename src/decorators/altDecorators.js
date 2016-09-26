@@ -43,9 +43,8 @@ export const Store = (actionsInstance) => {
 export const StoreContainer = function () {
   const stores = Array.from(arguments);
   class Connect extends React.Component {
-
     static contextTypes = {
-      router: React.PropTypes.object.isRequired
+      router: React.PropTypes.func.isRequired
     };
 
     static getStores() {
@@ -73,7 +72,7 @@ export const StoreContainer = function () {
     Connect.prototype.render = function () {
       return React.createElement(
         targetClass,
-        { ...events, ...Connect.getPropsFromStores() },
+        {...this.props, ...events, ...Connect.getPropsFromStores() },
         this.props.children
       );
     };
